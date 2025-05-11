@@ -40,19 +40,19 @@ while True:
             data = byte_data.decode('utf-8').rstrip('\n').rstrip('\r')
             
             if(data == "match"):
-                datetime = datetime.now().isoformat()
+                currentDate = datetime.now().isoformat()
                                 
                 #Check if received MAC is from stop or from user
                 if uuid_isStop(client_info[0], cur):
                     #it's a stop
                     table = "STOPPASSAGES"
-                    client_sock.send("{bus_uuid:" + f"\" {uuid}\"")
                 else:
                     #it's a user
                     table = "USERPASSAGES"
-                
+                    client_sock.send("{bus_uuid:" + f"\" {uuid}\"")
 
-                cur.execute(f"INSERT INTO {table} (uuid, datehour) VALUES (\"{client_info[0]}\", \"{datetime}\")")
+
+                cur.execute(f"INSERT INTO {table} (macAddress, datehour) VALUES (\"{client_info[0]}\", \"{currentDate}\")")
                 con.commit()
             else:
                 print("No match")
