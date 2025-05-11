@@ -6,7 +6,7 @@
 
 from bluetooth import *
 import sqlite3
-con = sqlite3.connect("/home/deblazz/Documents/pyBluezExample/test/busStop/data.db")
+con = sqlite3.connect("./data.db")
 cur = con.cursor()
 
 server_sock=BluetoothSocket( RFCOMM )
